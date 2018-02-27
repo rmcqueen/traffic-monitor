@@ -7,7 +7,7 @@
  * estimation.
  */
 
-#include "Transform.h"
+#include "Transform.hpp"
 
 /**
  * Constructor for just the current frame
@@ -72,10 +72,10 @@ void Transform::set_src_vec(cv::Point2f top_left_,
                             cv::Point2f top_right_,
                             cv::Point2f bottom_right_,
                             cv::Point2f bottom_left_) {
-  src_vec[0].emplace_back(top_left_);
-  src_vec[1].emplace_back(top_right_);
-  src_vec[2].emplace_back(bottom_right_);
-  src_vec[3].emplace_back(bottom_left_);
+  src_vec->emplace_back(top_left_);
+  src_vec->emplace_back(top_right_);
+  src_vec->emplace_back(bottom_right_);
+  src_vec->emplace_back(bottom_left_);
 }
 
 /**
@@ -90,10 +90,26 @@ void Transform::set_dst_vec(cv::Point2f top_left_,
                             cv::Point2f top_right_,
                             cv::Point2f bottom_right_,
                             cv::Point2f bottom_left_) {
-  dst_vec[0].emplace_back(top_left_);
-  dst_vec[1].emplace_back(top_right_);
-  dst_vec[2].emplace_back(bottom_right_);
-  dst_vec[3].emplace_back(bottom_left_);
+  dst_vec->emplace_back(top_left_);
+  dst_vec->emplace_back(top_right_);
+  dst_vec->emplace_back(bottom_right_);
+  dst_vec->emplace_back(bottom_left_);
+}
+
+/**
+ *
+ * @return std::vector<cv::Point2f> *src_vec a pointer to the created vector
+ */
+std::vector<cv::Point2f> Transform::get_src_vec() {
+  return *src_vec;
+}
+
+/**
+ *
+ * @return std::vector<cv::Point2f> *dst_vec a pointer to the created vector
+ */
+std::vector<cv::Point2f> Transform::get_dst_vec() {
+  return *dst_vec;
 }
 
 /**

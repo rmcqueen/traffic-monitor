@@ -30,6 +30,10 @@ class Transform {
 
   void set_dst_vec(cv::Point2f top_left_, cv::Point2f top_right_, cv::Point2f bottom_right_, cv::Point2f bottom_left_);
 
+  std::vector<cv::Point2f> get_src_vec();
+
+  std::vector<cv::Point2f> get_dst_vec();
+
   void compute_birds_eye_view(std::vector<cv::Point2f> src_,
                               std::vector<cv::Point2f> dst_,
                               cv::Mat frame,

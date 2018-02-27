@@ -1,6 +1,6 @@
 // Blob.cpp
 
-#include "Blob.h"
+#include "Blob.hpp"
 
 Blob::Blob(std::vector<cv::Point> _contour) {
 
