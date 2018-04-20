@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(test_tracker)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp TrackerTest.cpp)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 add_executable(test_tracker ${SOURCE_FILES})

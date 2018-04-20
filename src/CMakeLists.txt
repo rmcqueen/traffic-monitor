@@ -6,7 +6,8 @@ set(SOURCE_FILES Blob.cpp
         Tracker.cpp
         Transform.cpp
         AppConfig.cpp
-        main.cpp)
+        main.cpp
+        BackgroundSubstractor.cpp)
 
 add_library(core-traffic-monitor ${SOURCE_FILES})
 target_include_directories(core-traffic-monitor PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

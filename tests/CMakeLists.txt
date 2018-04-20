@@ -11,11 +11,12 @@ include_directories(src)
 
 set(SOURCE_FILES
         main.cpp
-        blob/BlobTest.cpp)
+        blob/BlobTest.cpp background_subtractor/BackgroundSubtractorTest.cpp transform/TransformTest.cpp)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 add_executable(test_traffic_monitor ${SOURCE_FILES})
 
 add_subdirectory(blob)
+add_subdirectory(background_subtractor)
 add_subdirectory(transform)
 add_subdirectory(tracker)
 
