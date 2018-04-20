@@ -1,31 +1,36 @@
-// Blob.cpp
-
-#include "Blob.h"
+/**
+ * Copyright: Chris Dahms
+ * Note: Some modifications have been made to this class. These modifications are from lines 17 -> 23 and line 97.
+ *
+ * Blob.cpp
+ *
+ * This class is used to store each potential detected object within a frame. This allows for prediction of the movement
+ * it will make for the next frame and enable tracking of when it was first and last seen on a frame; effetively allowing
+ * for an estimation of the blob's speed to be performed.
+ */
+#include "Blob.hpp"
 
 Blob::Blob(std::vector<cv::Point> _contour) {
-
   currentContour = _contour;
-
   currentBoundingRect = cv::boundingRect(currentContour);
-
   cv::Point currentCenter;
-
   currentCenter.x = (currentBoundingRect.x + currentBoundingRect.x + currentBoundingRect.width) / 2;
   currentCenter.y = (currentBoundingRect.y + currentBoundingRect.y + currentBoundingRect.height) / 2;
-
   centerPositions.push_back(currentCenter);
-
-  dblCurrentDiagonalSize = sqrt(pow(currentBoundingRect.width, 2) + pow(currentBoundingRect.height, 2));
-
-  dblCurrentAspectRatio = (float) currentBoundingRect.width / (float) currentBoundingRect.height;
-
   blnStillBeingTracked = true;
+  dblCurrentDiagonalSize = sqrt(pow(currentBoundingRect.width, 2) + pow(currentBoundingRect.height, 2));
   blnCurrentMatchFoundOrNewBlob = true;
-
+  start_frame = 0;
+  end_frame = 0;
+  speed = 0.0;
+  tracking_speed = false;
   intNumOfConsecutiveFramesWithoutAMatch = 0;
+  id = 0;
+  moving_left = false;
 }
 
-void Blob::predictNextPosition(void) {
+// This should be refactored to something like a Kalman Filter
+void Blob::predict_next_position(void) {
 
   int numPositions = (int) centerPositions.size();
 
@@ -93,8 +98,9 @@ void Blob::predictNextPosition(void) {
     predictedNextPosition.x = centerPositions.back().x + deltaX;
     predictedNextPosition.y = centerPositions.back().y + deltaY;
 
-  } else {
-    // should never get here
   }
 
+  // Want this to be the front value otherwise incorrect predictions can be made due to noise on the blob detection.
+  // Enables the correct direction to be predicted for each frame.
+  moving_left = predictedNextPosition.x - centerPositions.front().x <= 0;
 }
