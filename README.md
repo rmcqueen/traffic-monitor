@@ -43,7 +43,7 @@ The system is broken into four major components:
         • A log file is generated for every vehicle which has successfully passed through the calibration region. This log file contains a unique identifier for each vehicle and the associated speed.
         • Image snapshots are captured with the unique identifier as the image name (i.e, 0.jpg)
 
-![High Level System Overview](https://github.com/rmcqueen/traffic-monitor/docs/README/high_level.png)
+![High Level System Overview](https://github.com/rmcqueen/traffic-monitor/blob/master/docs/README/high_level.png)
 
 
 ## Results
@@ -51,7 +51,7 @@ Two case studies were performed in this work. The first being vehicles on a free
 
 A general look at what a detected vehicle looks like is shown below:
 
-![Detected Vehicle](https://github.com/rmcqueen/traffic-monitor/docs/README/bounding_box.png)
+![Detected Vehicle](https://github.com/rmcqueen/traffic-monitor/blob/master/docs/README/bounding_box.png)
 
 1. Freeway
     
