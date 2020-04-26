@@ -9,7 +9,7 @@ This project aims to reduce the manual labor associated with traffic surveying. 
 2. Install the V4L dependency on your Raspberry Pi 
 
     ```sudo apt-get install v4l-utils```
-3. Install the OpenCV library and GTest if you wish to run the unit tests 
+3. Install OpenCV v4.0.0 and if you wish to run tests, install GTest as well.
 4. Run the following command to activate the camera module
 
     ```sudo modprobe bcm2835-v4l2```
